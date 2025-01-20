@@ -81,6 +81,7 @@
    git commit -m "Added images"
    git push origin main
    ```
+6. Create Pull Request
 
 #### Afeef:
 1. Fork repository on GitHub:
@@ -117,6 +118,7 @@
    git commit -m "Added genre"
    git push origin main
    ```
+5. Create Pull Request
 
 #### Thaqief:
 1. Fork repository on GitHub:
@@ -154,6 +156,7 @@
    git commit -m "Added background color, and centerize elements"
    git push origin main
    ```
+5. Create Pull Request
  
 
 ## 2. CI/CD Pipeline Setup
