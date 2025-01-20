@@ -151,7 +151,7 @@
 4. Stage, commit, and push changes:
    ```
    git add *
-   git commit -m "Added genre"
+   git commit -m "Added background color, and centerize elements"
    git push origin main
    ```
  
