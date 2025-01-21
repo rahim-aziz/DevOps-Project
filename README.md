@@ -15,7 +15,7 @@
    ```
    git clone https://github.com/rahim-aziz/DevOps-Project.git
    ```
-3. Create index.html with following content:
+3. Create `index.html` with following content:
    ```
    <html>
    <head>
@@ -57,7 +57,7 @@
 
    > demonslayer.jpg
 
-4. Adding images to index.html
+4. Adding images to `index.html`
    ```
    <html>
    <head>
@@ -95,7 +95,7 @@
    ```
    git clone https://github.com/ryn66/DevOps-Project.git
    ```
-3. Added genre to index.html:
+3. Added genre to `index.html`:
    ```
    <html>
    <head>
@@ -132,7 +132,7 @@
    ```
    git clone https://github.com/chillgaey/DevOps-Project.git
    ```
-3. Styling index.html:
+3. Styling `index.html`:
    ```
    <html>
    <head>
@@ -341,3 +341,21 @@
    [Top 5 Anime](http://3.27.204.8)
 
 ## 5. Documentation & Monitoring
+### Prerequisites:
++ Complete Step 1. Git Repository & Version Control
++ Complete Step 2. CI/CD Pipeline Setup
++ Complete Step 3. Containerization
++ Complete Step 4. AWS Deployment
+
+### Steps;
+
+#### Afeef:
+1. Run Prometheus:
+   ```
+   docker run -d -p 9090:9090 prom/prometheus
+   ```
+2. Run grafana:
+   ```
+   docker run -d -p 3000:3000 grafana/grafana
+
+   ```
