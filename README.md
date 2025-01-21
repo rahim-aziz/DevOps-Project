@@ -44,14 +44,19 @@
    - Repository: https://github.com/rahim-aziz/DevOps-Project.git 
 2. Clone repository to local machine:
    ```
-   git clone https://github.com/<enter-name>/DevOps-Project.git
+   git clone https://github.com/aliffeimanajami/DevOps-Project.git
    ```
 3. Adding images to local repository
    > aot.jpg
+
    > deathnote.jpg
+
    > fmab.jpg
+
    > opm.jpg
+
    > demonslayer.jpg
+
 4. Adding images to index.html
    ```
    <html>
@@ -77,7 +82,7 @@
    ```
 5. Stage, commit, and push changes:
    ```
-   git add *
+   git add index.html
    git commit -m "Added images"
    git push origin main
    ```
@@ -88,7 +93,7 @@
    - Repository: https://github.com/rahim-aziz/DevOps-Project.git 
 2. Clone repository to local machine:
    ```
-   git clone https://github.com/<enter-name>/DevOps-Project.git
+   git clone https://github.com/ryn66/DevOps-Project.git
    ```
 3. Added genre to index.html:
    ```
@@ -114,7 +119,7 @@
    ```
 4. Stage, commit, and push changes:
    ```
-   git add *
+   git add index.html
    git commit -m "Added genre"
    git push origin main
    ```
@@ -125,9 +130,9 @@
    - Repository: https://github.com/rahim-aziz/DevOps-Project.git 
 2. Clone repository to local machine:
    ```
-   git clone https://github.com/<enter-name>/DevOps-Project.git
+   git clone https://github.com/chillgaey/DevOps-Project.git
    ```
-3. Stylize index.html:
+3. Styling index.html:
    ```
    <html>
    <head>
@@ -152,14 +157,148 @@
    ```
 4. Stage, commit, and push changes:
    ```
-   git add *
+   git add index.html
    git commit -m "Added background color, and centerize elements"
    git push origin main
    ```
 5. Create Pull Request
  
+#### Rahim:
+1. Resolve conflict(if exist) and merge Pull Request
 
 ## 2. CI/CD Pipeline Setup
-## 3. Containerization
-## 4. AWS Deployment
+### Prerequisites:
++ Complete Step 1. Git Repository & Version Control
++ Complete Step 3. Containerization
++ Complete Step 4. AWS Deployment
 
+### Steps:
+
+#### Thaqief:
+1. Sync upstream repository
+2. Update local repository:
+   ```
+   git pull origin main
+   ```
+3. Make a GitHub workflow directory:
+   ```
+   mkdir -p .github/workflows/
+   ```
+4. Create `deploy.yml` inside `.github/workflows/` directory with following content:
+   ```
+   name: Deploy to AWS EC2
+   on:
+     push:
+       branches:
+         - main
+   jobs:
+     deploy:
+       runs-on: ubuntu-latest
+       steps: 
+       - name: Checkout code
+         uses: actions/checkout@v3
+       - name: Set up SSH
+         uses: webfactory/ssh-agent@v0.9.0
+         with:
+           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+       - name: Copy files to EC2
+         run: |
+           ssh -o StrictHostKeyChecking=no ec2-user@3.27.204.8 << 'EOF' 
+           cd /home/ec2-user/git/DevOps-Project
+           git pull origin main
+           EOF
+       - name: Rebuild docker image
+         run: |
+           ssh -o StrictHostKeyChecking=no ec2-user@3.27.204.8 << 'EOF' 
+           cd /home/ec2-user/git/DevOps-Project
+           docker build -t myapp .
+           EOF
+       - name: Restart Docker Container on EC2
+         run: |
+           ssh -o StrictHostKeyChecking=no ec2-user@3.27.204.8 << 'EOF' 
+           docker stop Top5Anime
+           docker rm Top5Anime
+           docker run -d -p 80:80 --name Top5Anime myapp
+           EOF 
+   ```
+5. Stage, commit, and push changes:
+   ```
+   git add .github/workflows/deploy.yml
+   git commit -m "Added GitHub Actions"
+   git push origin main
+   ```
+6. Create Pull Request
+
+#### Rahim:
+1. Resolve conflict(if exist) and merge Pull Request
+2. Add `EC2_SSH_KEY` to GitHub repository secrets
+
+
+## 3. Containerization
+### Prerequisites:
++ Docker Desktop installed
++ Complete Step 1. Git Repository & Version Control
+
+### Steps:
+
+#### Aliff:
+1. Sync upstream repository
+2. Update local repository:
+   ```
+   git pull origin main
+   ```
+3. Create DockerFile with following content:
+   ```
+   # Use a basic nginx image
+   FROM nginx:latest
+   # Copy local content to the nginx default location
+   COPY . /usr/share/nginx/html
+   # Expose port 80
+   EXPOSE 80
+   ```
+4. Build Docker image:
+   ```
+   docker build -t myapp .
+   ```
+5. Verify working by running Docker container and opening `localhost` in web browser:
+   ```
+   docker run -d -p 8080:80 --name Top5Anime myapp
+   ```
+6. Stage, commit, and push changes:
+   ```
+   git add DockerFile
+   git commit -m "Added DockerFile"
+   git push origin main
+   ```
+7. Create Pull Request
+
+#### Rahim:
+1. Resolve conflict(if exist) and merge Pull Request
+
+## 4. AWS Deployment
+### Prerequisites:
++ AWS EC2 has been set up
++ Docker and git has been set up on AWS EC2
++ Complete Step 1. Git Repository & Version Control
++ Complete Step 3. Containerization
+
+### Steps:
+
+#### Rahim:
+1. SSH into AWS EC2 instance:
+   ```
+   ssh -i ec2.pem ec2-user@3.27.204.8
+   ```
+2. Clone repository to `/home/ec2-user/git/Devops-Project`:
+   ```
+   git clone https://github.com/rahim-aziz/DevOps-Project.git
+   ```
+3. Build and run Docker image:
+   ```
+   docker build -t myapp .
+   docker run -d -p 80:80 --name Top5Anime myapp
+   ```
+4. Verify by accessing app on web browser:
+   [Top 5 Anime](http://3.27.204.8)
+
+## 5. Documentation & Monitoring
