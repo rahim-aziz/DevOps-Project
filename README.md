@@ -247,7 +247,7 @@
    ```
    git pull origin main
    ```
-3. Create DockerFile with following content:
+3. Create Dockerfile with following content:
    ```
    # Use a basic nginx image
    FROM nginx:latest
@@ -266,8 +266,8 @@
    ```
 6. Stage, commit, and push changes:
    ```
-   git add DockerFile
-   git commit -m "Added DockerFile"
+   git add Dockerfile
+   git commit -m "Added Dockerfile"
    git push origin main
    ```
 7. Create Pull Request
