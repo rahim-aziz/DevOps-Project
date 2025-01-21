@@ -219,7 +219,7 @@
            docker stop Top5Anime
            docker rm Top5Anime
            docker run -d -p 80:80 --name Top5Anime myapp
-           EOF 
+           EOF
    ```
 5. Stage, commit, and push changes:
    ```
