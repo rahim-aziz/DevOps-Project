@@ -359,5 +359,5 @@
    docker run -d -p 3000:3000 grafana/grafana
 
    ```
-3. Access Grafana at [Grafana](http://3.27.204.8:3030)
+3. Access Grafana at [Grafana](http://localhost:3030)
 4. Add Prometheus as data source
