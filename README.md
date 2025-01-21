@@ -82,7 +82,7 @@
    ```
 5. Stage, commit, and push changes:
    ```
-   git add index.html
+   git add *
    git commit -m "Added images"
    git push origin main
    ```
