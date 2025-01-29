@@ -316,7 +316,7 @@
 2. Push to Docker Hub:
    ```
    docker tag myapp rahimaziz/myapp:latest
-   docker rahimaziz/myapp:latest
+   docker push rahimaziz/myapp:latest
    ```
 
 ## 4. AWS Deployment
