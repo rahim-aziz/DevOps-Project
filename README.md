@@ -313,6 +313,11 @@
 
 #### Rahim:
 1. Resolve conflict(if exist) and merge Pull Request
+2. Push to Docker Hub:
+   ```
+   docker tag myapp rahimaziz/myapp:latest
+   docker rahimaziz/myapp:latest
+   ```
 
 ## 4. AWS Deployment
 ### Prerequisites:
